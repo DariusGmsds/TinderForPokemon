@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Test tinder pokemon</title>
+</head>
+
+<body>
+    <main>
+        <h1>Tinder for pokemon</h1>
+        <div id="pokemonScreen">
+            <img id="pokemonImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+                alt="pokemon">
+            <div id="desc">
+                <p id="pDescription">
+                    Description
+                </p>
+            </div>
+        </div>
+            <nav id="navBtnOption">
+                <button id="btnLike"><div id="imgheartsBtn"></div></button>
+                <button id="btnFavori"></button>
+                <button id="btnDislike" onclick="randomPokemon()"></button>
+            </nav>
+            <!-- make nav with 3 link -->   
+            <nav>
+                <a href="index.html">Like</a>
+                <a href="favori.html">Favori</a>
+                <a href="dislike.html">Dislike</a>
+            </nav>
+    </main>
+    <script src="js/script.js" onload="randomPokemon()"></script>
+</body>
+
+</html>
