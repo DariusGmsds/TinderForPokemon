@@ -9,6 +9,17 @@ let pokemon = {
     type: "Electric",
 }
 
+let pokemonFavorite = [];
+
+
+//make function if button btnFavorie is clicked then add the pokemon to the favorite list
+function addFavorite(){
+    if
+    pokemonFavorite.push(pokemon);
+    console.log(pokemonFavorite);
+}
+
+
 // make a functionto get api pokemon data in json format
 function getPokemonName(pokemonNum){
     // make a variable to store the api url
