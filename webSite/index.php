@@ -23,17 +23,13 @@
         </div>
             <nav id="navBtnOption">
                 <button id="btnDislike" onclick="randomPokemon()">
-                </button><button id="btnFavori" onclick="addFavorite()"></button>
+                </button><button id="btnFavori" onclick="addFavorites()"></button>
                 <button id="btnLike" onclick="randomPokemon()"></button>
             </nav>
-            <!-- make nav with 3 link -->   
-            <nav>
-                <a href="index.html">Like</a>
-                <a href="favori.html">Favori</a>
-                <a href="dislike.html">Dislike</a>
-            </nav>
+            <?php include 'nav.html'; ?>
+           
     </main>
-    <script src="js/script.js" onload="randomPokemon()"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
