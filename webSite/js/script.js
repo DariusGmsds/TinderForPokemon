@@ -30,8 +30,10 @@ function addFavorites() {
                 return;
             }
         }
+        console.log("add");
         pokemonFavorites.push(pokemon);
     }
+    console.log(pokemonFavorites);
 }
 
 

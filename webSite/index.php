@@ -17,10 +17,11 @@
                 alt="pokemon">
             <div id="desc">
                 <p id="pDescription">
-                    Description
+                    Description 
                 </p>
             </div>
         </div>
+        <hr>
             <nav id="navBtnOption">
                 <button id="btnDislike" onclick="randomPokemon()">
                 </button><button id="btnFavori" onclick="addFavorites()"></button>
