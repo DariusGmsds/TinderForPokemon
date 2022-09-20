@@ -27,10 +27,11 @@
                 </button><button id="btnFavori" onclick="addFavorites()"></button>
                 <button id="btnLike" onclick="randomPokemon()"></button>
             </nav>
-            <?php include 'nav.html'; ?>
+            <?php include 'lib/nav.html'; ?>
            
     </main>
-    <script src="js/script.js"></script>
+    <script src="js/script.js" ></script>
+    <script src="js/crud_indexDB.js" onload="useIndexDB()"></script>
 </body>
 
 </html>

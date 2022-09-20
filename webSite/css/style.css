@@ -43,8 +43,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-around;
-   
-   
 }
 
 hr{
@@ -128,10 +126,35 @@ a {
     justify-content: space-around;
 
     position: fixed;
-    height: 50px;
+    height: 8vh;
     bottom: 0px;
     left: 0px;
     right: 0px;
     margin-bottom: 0px;
 }
+
+
+#expend {
+    position: absolute;
+    top: 1vh;
+    left: 3vw;
+   color: black;
+   font-size: 5vh;
+}
+
+
+#favoritesMenu{
+    border: 1px solid black;
+    width: 80%;
+    height: 90%;
+}
+
+.cardpokemon{
+    border: 1px solid black;
+}
+
+
+
+
+
 
