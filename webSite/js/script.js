@@ -6,7 +6,7 @@
 // create object pokemon
 let pokemon = {
     name: "Pikachu",
-    img: "1",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
     type: "Electric",
     desc: "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
     distance: "10",
@@ -14,32 +14,17 @@ let pokemon = {
     Status: ""
 }
 
+
+var path = window.location.pathname;
+var page = path.split("/").pop();
+console.log( page );
+
 const longitude = 46.19572785502037;
 const latitude = 6.110309768148666;
 
 let pokemonFavorites = [];
+let pokemonLiked = [];
 let pokemonSee = [];
-
-// Make a function put 
-
-
-// Old function
-// function addFavorites() {
-//     if (pokemonFavorites.length == 0) {
-//         pokemonFavorites.push(pokemon);
-//     } else {
-//         for (let i = 0; i < pokemonFavorites.length; i++) {
-//             if (pokemonFavorites[i].name == pokemon.name) {
-//                 return;
-//             }
-//         }
-//         console.log("add");
-//         pokemonFavorites.push(pokemon);
-//     }
-//     console.log(pokemonFavorites);
-// }
-
-
 
 function getPokemonName(pokemonNum) {
     // make a variable to store the api url
@@ -54,11 +39,8 @@ function getPokemonName(pokemonNum) {
         .then(response => response.json())
         .then(data => {
             pokemon = new Object();
-            // make a variable to store the pokemon name
             pokemon.name = data.name;
-            // make a variable to store the pokemon image
             pokemon.img = data.sprites.front_default;
-            // make a variable to store the pokemon type
             pokemon.type = data.types[0].type.name;
             pokemon.age = age + 18;
             fetch(url2)
@@ -67,20 +49,10 @@ function getPokemonName(pokemonNum) {
                     pokemon.desc = data.descriptions[3].description;
                     pokemon.distance = distance(longitude, latitude, pokemonLong, pokemonMani).toFixed(0);
                     showpokemon();
-
                 })
                 .catch(error => console.log(error));
-            // make a variable to store the pokemon height
-            // let pokemonHeight = data.height;
-            // make a variable to store the pokemon weight
-            // let pokemonWeight = data.weight;
-            // make a variable to store the pokemon abilities
-            // let pokemonAbilities = data.abilities[0].ability.name;
-            // make a variable to store the pokemon moves
         })
         .catch(error => console.log(error));
-
-
 }
 
 
@@ -116,16 +88,45 @@ if (typeof (Number.prototype.toRad) === "undefined") {
         return this * Math.PI / 180;
     }
 }
+function navLike() {
+    page = "like";
+}
 
+function navFav() {
+    page = "favori";
+}
 
-
-/*Add new pokeon in indexDB*/
-function addFavorites() {
+function likedPokemon() {
+    randomPokemon();
+    pokemon.Status = "liked";
+    putPokemonFav(pokemon);
     let transaction = db.transaction(["pokemon"], "readwrite");
     let objectStore = transaction.objectStore("pokemon");
     let request = objectStore.add(pokemon);
     request.onsuccess = function (event) {
         console.log("add");
+
+    };
+    request.onerror = function (event) {
+        console.log("error");
+    };
+}
+
+function dislikedPokemon() {
+    randomPokemon();
+    pokemon.Status = "disliked";
+}
+
+/*Add new pokeon in indexDB*/
+function addFavorites() {
+    pokemon.Status = "favori";
+    putPokemonFav(pokemon);
+    let transaction = db.transaction(["pokemon"], "readwrite");
+    let objectStore = transaction.objectStore("pokemon");
+    let request = objectStore.add(pokemon);
+    request.onsuccess = function (event) {
+        console.log("add");
+
     };
     request.onerror = function (event) {
         console.log("error");
@@ -133,42 +134,91 @@ function addFavorites() {
 }
 
 
-/*create list in html #favoritesMenu white pokemonFavorites list*/
 function showFavorites() {
     console.log("show");
     getAllPokemon().then(function (data) {
         pokemonFavorites = data;
         let html = "";
         for (let i = 0; i < pokemonFavorites.length; i++) {
+            if (page == "liked.php") {
+                if (pokemonFavorites[i].Status == "liked") {
+                    html += "<div class='cardpokemon'>";
+                    html += "<img src=\"" + pokemonFavorites[i].img + "\">";
+                    html += "<h1 class='cardpokemon'>";
+                    html += pokemonFavorites[i].name;
+                    html += "</h1>";
+                    html += "<button  id=" + 'btn' + i + " > X </button>";
+                    html += "</div>";
+                }
+            }else if (page == "favorites.php") {
+                if (pokemonFavorites[i].Status == "favori") {
+                    html += "<div class='cardpokemon'>";
+                    html += "<img src=\"" + pokemonFavorites[i].img + "\">";
+                    html += "<h1 class='cardpokemon'>";
+                    html += pokemonFavorites[i].name;
+                    html += "</h1>";
+                    html += "<button  id=" + 'btn' + i + " > X </button>";
+                    html += "</div>";
+                }
+            }
 
-            // create a div to store the pokemon name
-            html += "<div class='cardpokemon'>";
-            html += "<div class='pokemonName'>";
-            html += pokemonFavorites[i].name;
-            html += "</div>";
-            // create a div to store the pokemon image
-            html += "<div class='pokemonImg'>";
-            html += "<img src='" + pokemonFavorites[i].img + "' alt='pokemon image'>";
-            html += "</div>";
-            // create a div to store the pokemon type
-            html += "<div class='pokemonType'>";
-            html += pokemonFavorites[i].type;
-            html += "</div>";
-            html += "</div>";
         }
-        document.getElementById('favoritesMenu').innerHTML = html;
-    }).catch(function (erro) { });
+        // add event listener to all buttons
+        document.getElementById("menu").innerHTML = html;
+        for (let i = 0; i < pokemonFavorites.length; i++) {
+            document.getElementById("btn" + i).addEventListener("click", function () {
+
+                deletePokemon(pokemonFavorites[i].name);
+                deletePokemonApi(pokemonFavorites[i].name);
+
+            });
+        }
+
+    }).catch(function (error) { console.log(error) });
 
 }
 
-function onloadCustom(){
+
+
+function onloadCustom() {
     console.log("onload");
     showFavorites();
-   // randomPokemon();
- //   showpokemon();
+    // randomPokemon();
+    //   showpokemon();
 }
 
 
 /* add showFavorites in windows addlistener*/
-window.addEventListener('load',  onloadCustom);
-   
+window.addEventListener('load', onloadCustom);
+
+
+
+function putPokemonFav(pokemon) {
+    let url = "https://633bd3cdc1910b5de0caa607.mockapi.io/favori";
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(pokemon),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+}
+
+
+
+
+function deletePokemonApi(pokemonName) {
+    let url = "https://633bd3cdc1910b5de0caa607.mockapi.io/favori/" + pokemonName;
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+}

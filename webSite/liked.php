@@ -11,8 +11,8 @@
 
 <body>
     <main>
-        <h1 >Tinder for pokemon [FAVORI]</h1>
-        <div id="menu">
+        <h1 >Tinder for pokemon [LIKED]</h1>
+        <div id="menu" >
 
         </div>
         

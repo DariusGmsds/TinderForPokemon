@@ -5,6 +5,8 @@
  <nav id="navMenu">
    <p id="expend"> <b>^</b> </p>  
     <a href="index.php">Home</a>
-    <a href="favorites.php">Favorites</a>
-    <a href="#">Like</a>
+    <a href="favorites.php" onclick="navFav()">Favorites</a>
+    <a href="liked.php" onclick="navLike()">Liked</a>
 </nav>
+<script src="js/script.js"></script>
+<script src="js/crud_indexDB.js" onload="useIndexDB()"></script>

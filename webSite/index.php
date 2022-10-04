@@ -23,9 +23,9 @@
         </div>
         <hr>
             <nav id="navBtnOption">
-                <button id="btnDislike" onclick="randomPokemon()">
+                <button id="btnDislike" onclick="dislikedPokemon()">
                 </button><button id="btnFavori" onclick="addFavorites()"></button>
-                <button id="btnLike" onclick="randomPokemon()"></button>
+                <button id="btnLike" onclick="likedPokemon()"></button>
             </nav>
             <?php include 'lib/nav.html'; ?>
            
