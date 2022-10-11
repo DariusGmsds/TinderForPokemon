@@ -1,3 +1,9 @@
+/*
+    Author      : Darius Gomes
+    Description : CRUD indeDB
+    Date        : 20.09.2022
+    fichier     : style.css
+*/
 /*Create indexDB */
 var db;
 
@@ -71,6 +77,7 @@ function deletePokemon(name) {
             let transaction = db.transaction(["pokemon"], "readwrite");
             let objectStore = transaction.objectStore("pokemon");
             let request = objectStore.delete(name);
+            location.reload();
             request.onsuccess = function (event) {
                 console.log("delete");
             };

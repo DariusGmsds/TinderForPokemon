@@ -1,0 +1,17 @@
+{
+    "name": "Tinder For Pokemon",
+    "short_name": "TFP",
+    "description " : "Application de rancontre pour Pokemon",
+    "icons":[
+        {
+            "src": "img/frame.png",
+            "sizes":"144x144",
+            "types ":"image/png"
+        }
+    ],
+    "start_url":"/es2-2022-2023/gmsds/index.php",
+    "display":"fullscreen",
+    "theme_color":"#B12A34",
+    "background_color":"#B12A34"
+
+}

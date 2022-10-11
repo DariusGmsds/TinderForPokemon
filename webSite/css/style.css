@@ -1,9 +1,13 @@
+/*
+    Author      : Darius Gomes
+    Description : feuille de style
+    Date        : 13.09.2022
+    fichier     : style.css
+*/
 * {
     margin: 0px;
     padding: 0px;
 }
-
-/**/
 
 main {
     width: 80vh;
@@ -94,7 +98,7 @@ img {
 }
 
 p {
-    font-family: 'Press Start 2P', cursive;
+    
     font-size: 2vh;
     display: flex;
     justify-content: center;
@@ -133,21 +137,22 @@ a {
     margin-bottom: 0px;
 }
 
-
-#expend {
-    position: absolute;
-    top: 1vh;
-    left: 3vw;
-   color: black;
-   font-size: 5vh;
-}
-
-
 #menu{
     border: 1px solid black;
     width: 80%;
     height: 90%;
     overflow: auto;
+}
+#likedH1{
+    margin-top: 1vh;
+    Font-size: 4vh;
+    text-align: center;
+}
+
+#FavH1{
+    margin-top: 1vh;
+    Font-size: 4vh;
+    text-align: center;
 }
 
 .cardpokemon{
@@ -156,26 +161,29 @@ a {
     margin-bottom: 1vh;
     display: flex;
     justify-content: space-between;
+    font-size: medium;
+    flex-direction: row;
+    align-items: center;
 }
 
 .cardpokemon img{
- width: 10vw;
+ width: 15vw;
  height: auto;
 }
 
 .cardpokemon button{
+    height: 5vh;
+    width: 10vw;
     background-color: white;
     color: black;
-    font-size: 3vh;
+    font-size: 2vh;
     border-radius: 0px;
 }
 .cardpokemon button:hover{
-    background-color: white;
+    background-color: bisque;
     color: black;
-    font-size: 3vh;
+    font-size: 2vh;
     border-radius: 0px;
-    box-shadow: 5px 2px 2px red;
-
 }
 
 .cardpokemon h1{

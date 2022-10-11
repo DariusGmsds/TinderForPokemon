@@ -1,6 +1,18 @@
-// Language: javascript
-// Path: js\script.js
+/*
+    Author      : Darius Gomes
+    Description : CRUD indeDBFonction js
+    Date        : 13.09.2022
+    fichier     : script.js
+*/
 "use strick";
+
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/es2-2022-2023/gmsds/sw.js');
+}
+
+
 
 
 // create object pokemon
@@ -17,7 +29,7 @@ let pokemon = {
 
 var path = window.location.pathname;
 var page = path.split("/").pop();
-console.log( page );
+console.log(page);
 
 const longitude = 46.19572785502037;
 const latitude = 6.110309768148666;
@@ -135,6 +147,7 @@ function addFavorites() {
 
 
 function showFavorites() {
+    
     console.log("show");
     getAllPokemon().then(function (data) {
         pokemonFavorites = data;
@@ -150,7 +163,7 @@ function showFavorites() {
                     html += "<button  id=" + 'btn' + i + " > X </button>";
                     html += "</div>";
                 }
-            }else if (page == "favorites.php") {
+            } else if (page == "favorites.php") {
                 if (pokemonFavorites[i].Status == "favori") {
                     html += "<div class='cardpokemon'>";
                     html += "<img src=\"" + pokemonFavorites[i].img + "\">";
@@ -211,6 +224,7 @@ function putPokemonFav(pokemon) {
 
 
 function deletePokemonApi(pokemonName) {
+    
     let url = "https://633bd3cdc1910b5de0caa607.mockapi.io/favori/" + pokemonName;
     fetch(url, {
         method: 'DELETE',
@@ -222,3 +236,4 @@ function deletePokemonApi(pokemonName) {
         .then(data => console.log(data))
         .catch(error => console.log(error));
 }
+

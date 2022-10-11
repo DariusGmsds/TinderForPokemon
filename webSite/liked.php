@@ -11,7 +11,7 @@
 
 <body>
     <main>
-        <h1 >Tinder for pokemon [LIKED]</h1>
+        <h1 id="likedH1">Tinder for pokemon [LIKED]</h1>
         <div id="menu" >
 
         </div>
